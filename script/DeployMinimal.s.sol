@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.24;
+
+import {Script} from "forge-std/Script.sol";
+import {MinimalAccount} from "src/ethereum/MinimalAccount.sol";
+import {HelperConfig} from "script/HelperConfig.s.sol";
+
+contract DeployMinimal is Script {
+    function run() public {}
+
+    function deployMinimalAccount()
+        public
+        returns (HelperConfig helperConfigInstance, MinimalAccount minimalAccountContract)
+    {
+        HelperConfig helperConfig = new HelperConfig();
+        HelperConfig.NetworkConfig memory config = helperConfig.getConfig();
+
+        vm.startBroadcast(config.account); // Use the burner wallet from config for broadcasting
+
+        MinimalAccount minimalAccount = new MinimalAccount(config.entryPoint);
+
+        // The MinimalAccount constructor (if Ownable) might set config.account as owner if it's the broadcaster.
+        // This explicit transfer ensures the script runner (msg.sender in script context) becomes the owner,
+        // or reaffirms ownership if config.account == msg.sender.
+        if (minimalAccount.owner() != msg.sender) {
+            minimalAccount.transferOwnership(msg.sender);
+        }
+
+        vm.stopBroadcast();
+
+        return (helperConfig, minimalAccount);
+    }
+}
