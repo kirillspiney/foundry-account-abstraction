@@ -23,9 +23,11 @@ contract DeployMinimal is Script {
         // The MinimalAccount constructor (if Ownable) might set config.account as owner if it's the broadcaster.
         // This explicit transfer ensures the script runner (msg.sender in script context) becomes the owner,
         // or reaffirms ownership if config.account == msg.sender.
-        if (minimalAccount.owner() != msg.sender) {
-            minimalAccount.transferOwnership(msg.sender);
-        }
+        // if (minimalAccount.owner() != msg.sender) {
+        //     minimalAccount.transferOwnership(msg.sender);
+        // }
+
+        minimalAccount.transferOwnership(config.account);
 
         vm.stopBroadcast();
 
