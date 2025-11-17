@@ -3,7 +3,7 @@
 A **Foundry** (Forge) project demonstrating **two types of Account
 Abstraction**:
 
-1.  **Ethereum-style Account Abstraction (ERC‑4337)**\
+1.  **Ethereum-style Account Abstraction (ERC‑4337)**
 2.  **zkSync-native Account Abstraction**, which uses native zkSync
     validation rules and differs significantly from ERC‑4337
 
@@ -15,17 +15,17 @@ and architectural differences.
 
 ## Table of Contents
 
-1.  What is Account Abstraction?\
-2.  Two Types of Account Abstraction\
-3.  Project Overview\
-4.  Architecture\
-5.  Features\
-6.  Getting Started\
-7.  Usage\
-8.  Testing\
-9.  Deployment\
-10. Security Considerations\
-11. Contributing\
+1.  What is Account Abstraction?
+2.  Two Types of Account Abstraction
+3.  Project Overview
+4.  Architecture
+5.  Features
+6.  Getting Started
+7.  Usage
+8.  Testing
+9.  Deployment
+10. Security Considerations
+11. Contributing
 12. License
 
 ------------------------------------------------------------------------
@@ -39,10 +39,10 @@ gas payment scheme, and execution flow.
 
 This provides features such as:
 
--   Custom signature schemes\
--   Social recovery\
--   Sponsored gas via paymasters\
--   Batched transactions\
+-   Custom signature schemes
+-   Social recovery
+-   Sponsored gas via paymasters
+-   Batched transactions
 -   Non‑key‑based authentication logic
 
 ------------------------------------------------------------------------
@@ -53,20 +53,20 @@ This repository implements **two completely different AA models**:
 
 ### 1. Ethereum Account Abstraction --- ERC‑4337
 
--   Uses a **UserOperation** struct\
+-   Uses a **UserOperation** struct
 -   A central **EntryPoint** contract validates & executes operations\
--   Requires bundlers\
--   Does *not* modify Ethereum protocol rules\
+-   Requires bundlers
+-   Does *not* modify Ethereum protocol rules
 -   Validation logic lives inside the wallet (`validateUserOp`)
 
 ### 2. zkSync Native Account Abstraction
 
--   Account Abstraction is **built into zkSync protocol**\
--   Every account is *by definition* a smart contract account\
--   No EntryPoint contract\
--   No ERC‑4337 UserOperation\
--   Validation logic is handled through zkSync's native account rules\
--   Gas model & calldata compression are different\
+-   Account Abstraction is **built into zkSync protocol**
+-   Every account is *by definition* a smart contract account
+-   No EntryPoint contract
+-   No ERC‑4337 UserOperation
+-   Validation logic is handled through zkSync's native account rules
+-   Gas model & calldata compression are different
 -   zkSync uses its own compiler constraints and execution pipeline
 
 ⚠️ Because zkSync uses a separate compiler and stack model, contracts
@@ -80,11 +80,11 @@ This repo contains examples and tests illustrating both flows.
 
 This repository includes:
 
--   An **ERC‑4337 smart wallet**\
--   An **EntryPoint-like contract**\
+-   An **ERC‑4337 smart wallet**
+-   An **EntryPoint-like contract**
 -   A **zkSync-style account contract** adhering to zkSync validation
-    rules\
--   Scripts to deploy, run, and test both systems\
+    rules
+-   Scripts to deploy, run, and test both systems
 -   Forge tests for comparing logic and behavior
 
 ------------------------------------------------------------------------
@@ -103,11 +103,11 @@ This repository includes:
 
 ## Features
 
--   Ethereum ERC‑4337 wallet & EntryPoint\
--   zkSync native AA wallet\
--   Unified Foundry testing environment\
--   Example scripts for sending operations\
--   Demonstrations of signature validation, nonces, and execution logic\
+-   Ethereum ERC‑4337 wallet & EntryPoint
+-   zkSync native AA wallet
+-   Unified Foundry testing environment
+-   Example scripts for sending operations
+-   Demonstrations of signature validation, nonces, and execution logic
 -   Deployment scripts for both Ethereum RPC and zkSync RPC
 
 ------------------------------------------------------------------------
@@ -116,9 +116,9 @@ This repository includes:
 
 ### Prerequisites
 
--   **Foundry**\
--   **Rust / zkSync dependencies** if compiling zkSync contracts\
--   **Private key** for deployment\
+-   **Foundry**
+-   **Rust / zkSync dependencies** if compiling zkSync contracts
+-   **Private key** for deployment
 -   Node with Ethereum or zkSync RPC
 
 ### Setup
@@ -184,9 +184,9 @@ Scripts don't work properly on zkSync at the moment.
 
 ## Security Considerations
 
--   Strict validation required for all signature and nonce checks\
--   zkSync accounts must follow native validation requirements\
--   ERC‑4337 EntryPoint must properly enforce verification\
+-   Strict validation required for all signature and nonce checks
+-   zkSync accounts must follow native validation requirements
+-   ERC‑4337 EntryPoint must properly enforce verification
 -   Test all edge cases, especially differences in stack depth or
     calldata formats
 
@@ -194,11 +194,11 @@ Scripts don't work properly on zkSync at the moment.
 
 ## Contributing
 
-PRs welcome!\
+PRs welcome!
 You can help by:
 
--   Adding more examples for zkSync\
--   Benchmarking differences between Ethereum and zkSync AA\
+-   Adding more examples for zkSync
+-   Benchmarking differences between Ethereum and zkSync AA
 -   Improving tests or adding fuzz/invariant testing
 
 ------------------------------------------------------------------------
